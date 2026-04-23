@@ -1,6 +1,7 @@
 const btn = document.createElement("button");
 btn.textContent = "貼り付け";
 document.body.appendChild(btn);
+
 btn.style.position = "fixed";
 btn.style.top = "10px";
 btn.style.left = "10px";
@@ -13,13 +14,36 @@ const tbody = document.querySelector("tbody");
 btn.addEventListener("click", async () => {
     try {
         const text = await navigator.clipboard.readText();
-        const date = text.split(/\r?\n/);
+
+        const rows = text
+            .split(/\r?\n/)
+            .map(row => row.split(/\t/));
+
+        let calendarData = {};
+        let currentDay = null;
+
+        rows.forEach(row => {
+            row.forEach(cell => {
+                const value = cell.trim();
+
+                if (!value) return;
+
+                if (/^\d+$/.test(value)) {
+                    currentDay = Number(value);
+                } 
+                else if (currentDay !== null) {
+                    if (!calendarData[currentDay]) {
+                        calendarData[currentDay] = [];
+                    }
+                    calendarData[currentDay].push(value);
+                }
+            });
+        });
 
         tbody.innerHTML = "";
 
         let day = 1;
-        let dateIndex = 0;
-        const totalDays = "31";
+        const totalDays = 31;
 
         for (let week = 0; week < 6; week++) {
             const trDate = document.createElement("tr");
@@ -38,7 +62,7 @@ btn.addEventListener("click", async () => {
                 if (day <= totalDays) {
                     tdDate.textContent = day;
                 }
-                trData.appendChild(tdDate);
+                trDate.appendChild(tdDate);
 
                 const tdAM = document.createElement("td");
                 tdAM.textContent = "AM";
@@ -51,20 +75,21 @@ btn.addEventListener("click", async () => {
                 const td1 = document.createElement("td");
                 const td2 = document.createElement("td");
 
-                if (d === 0 || d === 6) {
-                    td1.textContent = "休";
-                    td2.textContent = "休";
-                    td1.style.color = "red";
-                    td2.style.color = "red";
-                } else {
-                    const content = date[dateIndex] || "";
-                    td1.textContent = content;
-                    td2.textContent = content;
-                    dateIndex++;
+                if (day <= totalDays) {
+                    const content = calendarData[day] || [];
+
+                    td1.textContent = content[0] || "";
+                    td2.textContent = content[1] || "";
+
+                    if (d === 0 || d === 6) {
+                        td1.style.color = "red";
+                        td2.style.color = "red";
+                    }
                 }
 
                 trData.appendChild(td1);
                 trData.appendChild(td2);
+
                 day++;
             }
 
@@ -74,6 +99,7 @@ btn.addEventListener("click", async () => {
 
             if (day > totalDays) break;
         }
+
     } catch (err) {
         console.error("エラーが発生しました", err);
         alert("クリップボードの読み取りを許可してください。");
