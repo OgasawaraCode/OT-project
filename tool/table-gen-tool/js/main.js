@@ -27,23 +27,24 @@ function  generatetable(year, month) {
         for (let j = 0; j < 7; j++) {
             if (i === 0 && j < firstDay || dateCount > lastDate) {
                 row += "<td></td>";
-            } else {
-                
             }
         }
+
+        row += "</tr>";
+        calendarRow += row;
+        if (dateCount > lastDate) break;
     }
 
-
-
-
-
-
-
-    // const htmlContent = ``;
+    const htmlContent = `
+<table border="0" cellpadding="0" cellspacing="0" width="1008">
+    <tbody>
+        ${calendarRow}
+    </tbody>
+</table>`;
 }
 
 function downloadHtml() {
-    const blob = new Blob(["<h1>hello world</h1>"], { type: 'text/html' });
+    const blob = new Blob([htmlContent], { type: 'text/html' });
     const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(blob), download: 'index.html' });
     a.click();
     URL.revokeObjectURL(a.href);
