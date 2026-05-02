@@ -14,8 +14,24 @@ function handleExport() {
     downloadHtml();
 }
 
-function  generatetable() {
-    const firstDay = new Data(year, month - 1, 1).getDay();
+function  generatetable(year, month) {
+    const firstDay = new Date(year, month - 1, 1).getDay();
+    const lastDate = new Date(year, month, 0).getDate();
+
+    let calendarRow = "";
+    let dateCount = 1;
+
+    for (let i = 0; i < 6; i++) {
+        let row = "<tr>";
+
+        for (let j = 0; j < 7; j++) {
+            if (i === 0 && j < firstDay || dateCount > lastDate) {
+                row += "<td></td>";
+            } else {
+                
+            }
+        }
+    }
 
 
 
