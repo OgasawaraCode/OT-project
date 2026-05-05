@@ -66,7 +66,7 @@ freeBtn.style.padding = "4px 12px";
 container.appendChild(freeBtn);
 
 const helpText = document.createElement("p");
-helpText.innerHTML = "※入力例：1,2-4,5am,6pm<br>※5-7pmなどの範囲指定も可";
+helpText.innerHTML = "※入力例：1,2-4,5am,6pm,7~15休<br>※5-7pmなどの範囲指定も可";
 helpText.style.fontSize = "10px";
 helpText.style.color = "#666";
 helpText.style.marginTop = "0px";
@@ -147,16 +147,19 @@ freeBtn.addEventListener("click", () => {
     parts.forEach(part => {
         const targetAm = /am$/i.test(part);
         const targetPm = /pm$/i.test(part);
+        const targetHol = /休$/i.test(part);
 
         const setStatus = (day) => {
             if (day >= 1 && day <= 31) {
+                let HolFree = targetHol ? "休" : "空";
+
                 if (targetAm) {
-                    calendarResults[day - 1].am = "空";
+                    calendarResults[day - 1].am = HolFree;
                 } else if (targetPm) {
-                    calendarResults[day - 1].pm = "空";
+                    calendarResults[day - 1].pm = HolFree;
                 } else {
-                    calendarResults[day - 1].am = "空";
-                    calendarResults[day - 1].pm = "空";
+                    calendarResults[day - 1].am = HolFree;
+                    calendarResults[day - 1].pm = HolFree;
                 }
             }
         };
@@ -234,8 +237,11 @@ function  buildCalendarHtml(year, month) {
                 row += nowDate ? `<td>午前</td><td>午後</td>` : `<td></td><td></td>`;
             } else if (thirdRow) {
                 if (nowDate) {
+                    const weekend = (j === 0 || j === 6);
                     const data = calendarResults[retenCount - 1];
-                    row += `<td>${data.am}</td><td>${data.pm}</td>`;
+                    let amHol = weekend ? "休" : data.am;
+                    let pmHol = weekend ? "休" : data.pm;
+                    row += `<td>${amHol}</td><td>${pmHol}</td>`;
                 } else {
                     row += `<td></td><td></td>`;
                 }
