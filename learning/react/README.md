@@ -1,16 +1,22 @@
-# React + Vite
+# AI利用で学習 - React編
+恐らく開発の核となる為、改めて理解している事や疑問をここに記載する。
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Reactとは
+UI開発に特化したJavaScriptライブラリの一種。
+特徴としては、生のJS開発と違い、コードをコンポーネント化して開発が出来る。
 
-Currently, two official plugins are available:
+## Reactのメリット
+1. 作業効率が上がる
+- パーツごとに管理する事で、コードの視認性が向上する。
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+2. 保守性が高い
+- コンポーネントは再利用できるので修正コストを削減できる。
 
-## React Compiler
+## JavaScriptライブラリ
+- react
+- react-router-dom（React専用のプラグイン：遷移（配下）ページが作成出来る）
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 疑問点・不明点
+- reactのuseStateでデータ管理を行うメリット。（vanillajsより何が良いのか。）
