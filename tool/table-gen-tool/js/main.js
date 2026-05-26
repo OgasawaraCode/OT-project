@@ -46,4 +46,5 @@ tgBtn.addEventListener("click", () => {
             iptContainer.style.display = "none";
         };
     }
+    tgAction = !tgAction;
 });
