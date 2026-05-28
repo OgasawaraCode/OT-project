@@ -3,7 +3,7 @@
 const htmlContent = `
 <button class="toggle-btn" style="display: block; background-color: #efefef; padding: 8px 12px; border-radius: 4px; cursor: pointer; margin-bottom: 5px; border: none; box-shadow: 0 2px 6px rgba(0,0,0,0.2);">📅</button>
 <div class="input-container" style="background-color: #ffffff; width: 200px; padding: 10px; border-radius: 8px; box-sizing: 0 4px 12px rgba(0,0,0,0.15); display: none;">
-    <input type="month" style="display: block; width: 145px; color: #333; padding: 5px; margin-bottom: 10px; border-radius: 4px;">
+    <input class="input-month" type="month" style="display: block; width: 145px; color: #333; padding: 5px; margin-bottom: 10px; border-radius: 4px;">
     <label style="display: block; color: #333; font-size: 12px;">
         空日／休日を記入↓
         <input class="input-field" type="text" style="display: block; width: 170px; height: 25px; margin-top: 5px; margin-bottom: 10px;">
@@ -61,12 +61,13 @@ tgBtn.addEventListener("click", () => {
         };
     }
     
-    // 【重要】状態のスイッチ ボタン開く➡閉じると繰り返す事が出来る。
+    // 【重要】状態のスイッチ ボタン開く → 閉じると繰り返す事が出来る
     tgAction = !tgAction;
 });
 
-// 入力データの整理
-function inputFieldOrganize() {
+// 入力データ整理 → 現在の年月を取得 → カレンダー生成関数（一塊に変更）
+function buildCalendar() {
+// 入力データの管理
     // DOMのクラスを取得
     const inputField = document.querySelector(".input-field");
     
@@ -85,7 +86,7 @@ function inputFieldOrganize() {
     if (cleanInput.includes("-") || cleanInput.includes("~") || cleanInput.includes("ー") || cleanInput.includes("～")) {
         // ハイフン等が入っている入力データを分割
         const inputHyphen = cleanInput.split(/[-~ー～]/);
-        // 入力データの最初と最後の値を取得（Numberに変更）
+        // 入力データの最初と最後の値を取得（安全性担保の為Numberに変更）
         const inputStart = Number(inputHyphen[0]);
         const inputEnd = Number(inputHyphen[1]);
         
@@ -97,10 +98,48 @@ function inputFieldOrganize() {
                 inputStatus(inputCount);
             }
         } else {
-            const inputKeep = Number(cleanInput);
-            if (!isNaN(inputKeep)) {
-                inputStatus(inputKeep);
+            const completedInput = Number(cleanInput);
+            if (!isNaN(completedInput)) {
+                inputStatus(completedInput);
             }
         }
     }
+    
+// 年月選択インプットの処理
+// DOMのクラスを取得
+const monthInput = document.querySelector(".monthInput");
+// 現在の年月を取得
+const now = new Date();
+// 現在の年月から「年」を取得
+const searchYear = now.getFullYear();
+// 現在の年月から「月」を取得
+const searchMonth = String(now.getMonth() + 1).padStart(2, '0');
+// DOMに現在の年月を流し込む
+monthInput.value = `${searchYear}-${searchMonth}`;
+
+// 年月インプットが入力されていない場合アラートと処理停止
+if (!monthInput.value) {
+    alert("年月を選択してください。");
+    return;
+}
+
+// 年月インプットにデフォルトで入っている「-」を分割して変数に代入
+const [inputYear, inputMonth] = monthInput.value.split("-");
+
+// 分割した値を数値に変換
+const year = Number(inputYear);
+const month = Number(inputMonth);
+
+// カレンダー生成
+completedInput.forEach(cmpdInput => {
+    // 現在の最初の曜日を取得
+    const firstDay = new Date(year, month - 1, 1).getDay();
+    // 現在の日を取得
+    const lastDate = new Date(year, month, 0).getDate();
+    
+    // 入力欄から「休」「午前」「午後」を調べる
+    const searchHl = /休$/i.test(cmpdInput);
+    const searchAm = /am$/i.test(cmpdInput);
+    const searchPm = /pm$/i.test(cmpdInput);
+});
 }
