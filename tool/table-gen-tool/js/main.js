@@ -65,3 +65,51 @@ tgBtn.addEventListener("click", () => {
     tgAction = !tgAction;
 });
 
+// データ洗浄＋配列作成用関数
+function cleansingAndBuildCalendar(inputData) {
+// 最終的なカレンダーの配列データ
+let calendarResults = [];
+    // 入力欄が空の場合、全部に「満」を入れる
+    if (inputData === "") {
+        for (let d = 0; d < 31; d++) {
+            let daysData = {
+                am: "満",
+                pm: "満"
+            };
+          calendarResults.push(daysData);
+        }
+    }
+    // 入力データをカンマ、スペース、タブで区切って配列に入れる
+    const inputParts = inputData.split(/[，,、\s]+/);
+    
+    // 配列の1つずつの文字列に各処理を加える
+    inputParts.forEach(iPart => {
+        // 入力データから「休」「午前」「午後」を検索
+        const targetHl = /休$/i.test(iPart);
+        const targetAm = /am$/i.test(iPart);
+        const targetPm = /pm$/i.test(iPart);
+        
+        // 文字列からアルファベットを削除し、全角数字を半角に変更
+        let strDelete = iPart.replace(/[apmAPM]/g, "");
+        let cleanPart = strDelete.replace(/[０-９]/g, function(s) {
+        return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
+        });
+        return cleanPart;
+        
+        // 【データ管理】数字以外の検索結果を利用して配列データに格納
+        const daysStatus = (day) => {
+            if (day >= 1 && day <= 31) {
+                let holOrEmpty = targetHl ? "休" : "空";
+
+                if (targetAm) {
+                    calendarResults[day - 1].am = holOrEmpty;
+                } else if (targetPm) {
+                    calendarResults[day - 1].pm = holOrEmpty;
+                } else {
+                    calendarResults[day - 1].am = holOrEmpty;
+                    calendarResults[day - 1].pm = holOrEmpty;
+                }
+            }
+        };
+    });
+};
