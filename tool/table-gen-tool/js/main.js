@@ -1,7 +1,6 @@
 /////////////////////////////////////////////////
 // 【UI構築】 ＊＊ページ表示用のHTMLを作成＊＊
 ////////////////////////////////////////////////
-
 // 処理を軽くするためにHTMLコンテンツを一括で構築する方法に変更 CSSも一緒に追加
 const htmlContent = `
 <button class="toggle-btn" style="display: block; background-color: #efefef; padding: 8px 12px; border-radius: 4px; cursor: pointer; margin-bottom: 5px; border: none; box-shadow: 0 2px 6px rgba(0,0,0,0.2);">📅</button>
@@ -24,7 +23,6 @@ document.body.appendChild(div);
 /////////////////////////////////////////////////
 // 【UI機能】 ＊＊トグルボタンのクリックイベント＊＊
 ////////////////////////////////////////////////
-
 // DOMのクラスを取得
 const tgBtn = document.querySelector(".toggle-btn");
 const iptContainer = document.querySelector(".input-container");
@@ -72,13 +70,12 @@ tgAction = !tgAction;
 ///////////////////////////////////////////////////
 //  【カレンダー用関数】＊＊データ管理＋配列作成用＊＊
 //////////////////////////////////////////////////
-
 function keepDigitsAndBuildCalendar(inputData) {
 
 // 最終的なカレンダーの配列データ
 let calendarResults = [];
 
-// 項目全部に「満」を入れる
+// まず項目全部に「満」を入れる
 for (let i = 0; i < 31; i++) {
     let daysData = {
         am: "満",
@@ -102,7 +99,7 @@ inputParts.forEach(iPart => {
     let converPart = strDelete.replace(/[０-９]/g, function(s) {
     return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
     });
-    let cleanPart = converPart.replace(/[休]/g, "");        
+    let cleanPart = converPart.replace(/[休]/g, "");
 
     // 【重要：データ管理の関数】下のforとifで貰った数値を引数に渡して「インデックス」として管理 ＋ amとpmに既に埋めてある「満」を条件によって「休」か「空」に変更
     const daysStatus = (day) => {
@@ -149,3 +146,19 @@ inputParts.forEach(iPart => {
 // 【重要】完成した31日分のデータを戻り値として外に返す
 return calendarResults;
 };
+
+// テーブルタグ生成 UI出力関数
+/** JSDoc
+ * @param {number} year // 表示する年
+ * @param {number} month // 表示する月
+ * @param {Object[]} calendarData // カレンダーのデータ配列
+ * @param {string} calendarData[].am // 午前の予定
+ * @param {string} calendarData[].pm // 午後の予定
+ */
+
+///////////////////////////////////////////////////
+//  【カレンダー用関数】＊＊データ管理＋配列作成用＊＊
+//////////////////////////////////////////////////
+function generateCalendarHtml(year, month, calendarData) {
+    
+}
