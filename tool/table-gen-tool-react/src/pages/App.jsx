@@ -124,7 +124,14 @@ export default function App() {
                 
                 // 月初、月末の前後を計算しないための記述
                 let nowDate = !((k < 3 && l < firstDay) || retenCount > lastDate);
-        }
+                
+                // 3セットの処理
+                if (firstRow) {
+                    row += `<td colspan="2">${nowDate ? retenCount : ""}</td>`;
+                } else if (secondRow) {
+                    row += nowDate ? `<td>午前</td><td>午後</td>` : `<td></td><td></td>`;
+                }
+            }
     }
 
     // CSS
