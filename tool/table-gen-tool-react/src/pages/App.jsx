@@ -108,6 +108,23 @@ export default function App() {
         // カレンダーのHTML用空配列とカウント用変数
         let calendarRow = "";
         let dateCount = 1;
+        
+        // 全体の行
+        for (let k = 0; k < 18; k++) {
+            let row = "<tr>";
+            // カウントリセット用の記述
+            let retenCount = dateCount;
+            
+            // 1週間の処理
+            for (let l = 0; l < 7; l++) {
+                // 行の計算式 これをベースにifを展開する
+                let firstRow = (k % 3 === 0);
+                let secondRow = (k % 3 === 1);
+                let thirdRow = (k % 3 === 2);
+                
+                // 月初、月末の前後を計算しないための記述
+                let nowDate = !((k < 3 && l < firstDay) || retenCount > lastDate);
+        }
     }
 
     // CSS
