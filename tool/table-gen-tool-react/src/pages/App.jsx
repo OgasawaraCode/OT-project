@@ -99,6 +99,16 @@ export default function App() {
         return calendarResults;
     });
     }
+    
+    function generateCalendarHtml(year, month, calendarData) {
+        // 月初、月末の取得
+        const firstDay = new Date(year, month - 1, 1).getDay();
+        const lastDate = new Date(year, month, 0).getDate();
+        
+        // カレンダーのHTML用空配列とカウント用変数
+        let calendarRow = "";
+        let dateCount = 1;
+    }
 
     // CSS
     const styles = {
