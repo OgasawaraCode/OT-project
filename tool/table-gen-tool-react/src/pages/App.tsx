@@ -4,6 +4,12 @@ import MonthInput from "./MonthInput";
 import TextInput from "./TextInput";
 import GenerateBtn from "./GenerateBtn";
 
+// 「満」が入っている配列を型定義
+interface CalendarData {
+    am: string;
+    pm: string;
+}
+
 export default function App() {
     // JS
     // トグルボタンの処理 初期値はクローズ
