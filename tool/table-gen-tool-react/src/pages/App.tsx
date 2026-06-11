@@ -110,7 +110,7 @@ export default function App() {
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ///  【HTML生成関数】
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    function generateCalendarHtml(year: number, month: number, calendarData: CalendarInitialData) {
+    function generateCalendarHtml(year: number, month: number, calendarData: CalendarInitialData[]) {
         // 月初、月末の取得
         const firstDay = new Date(year, month - 1, 1).getDay();
         const lastDate = new Date(year, month, 0).getDate();
@@ -231,7 +231,7 @@ export default function App() {
     };
     
     // CSS
-    const styles = {
+    const styles: { [key: string]: React.CSSProperties } = {
     container: {
       width: '200px',
       padding: '10px',
