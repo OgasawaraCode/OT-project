@@ -1,5 +1,12 @@
 // MonthInput.jsx
-function MonthInput({value, onChange}) {
+import React from "react";
+
+interface MonthInputItems {
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+function MonthInput({value, onChange}: MonthInputItems) {
   // CSS
   const styles = {
     input: {
