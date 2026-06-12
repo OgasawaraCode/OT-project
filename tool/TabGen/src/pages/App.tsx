@@ -137,18 +137,18 @@ export default function App() {
                 
                 // 3セットの処理
                 if (firstRow) {
-                    row += `<td colspan="2">${nowDate ? retenCount : ""}</td>`;
+                    row += `<td colspan="2">${nowDate ? retenCount : ""}</td>\n`;
                 } else if (secondRow) {
-                    row += nowDate ? `<td>午前</td><td>午後</td>` : `<td></td><td></td>`;
+                    row += nowDate ? `<td>午前</td>\n<td>午後</td>\n` : `<td></td>\n<td></td>\n`;
                 } else if (thirdRow) {
                     if (nowDate) {
                         const weekend = (l === 0 || l === 6);
                         const data = calendarData[retenCount - 1];
                         let amHl = weekend ? "休" : data.am;
                         let pmHl = weekend ? "休" : data.pm;
-                        row += `<td>${amHl}</td><td>${pmHl}</td>`;
+                        row += `<td>${amHl}</td>\n<td>${pmHl}</td>\n`;
                     } else {
-                        row += `<td></td><td></td>`;
+                        row += `<td></td>\n<td></td>\n`;
                     }
                 }
                 // 空欄以外をカウントする
@@ -170,20 +170,16 @@ export default function App() {
         
         // 生成したHTMLを戻り値として外に返す
         return `
-        <table border="0" cellpadding="0" cellspacing="0" width="1000">
-            <tbody>
-                <tr><td colspan="14">${year}年${month}月</td></tr>
-                <tr><td colspan="2" style="background: #999;">日</td>
-                <td colspan="2" style="background: #999;">月</td>
-                <td colspan="2" style="background: #999;">火</td>
-                <td colspan="2" style="background: #999;">水</td>
-                <td colspan="2" style="background: #999;">木</td>
-                <td colspan="2" style="background: #999;">金</td>
-                <td colspan="2" style="background: #999;">土</td>
-                </tr>
-                ${calendarRow}
-            </tbody>
-        </table>`;
+<table border="0" cellpadding="0" cellspacing="0" width="1000">
+<tbody><tr><td colspan="14">${year}年${month}月</td>
+</tr><tr><td colspan="2" style="background: #999;">日</td>
+<td colspan="2" style="background: #999;">月</td>
+<td colspan="2" style="background: #999;">火</td>
+<td colspan="2" style="background: #999;">水</td>
+<td colspan="2" style="background: #999;">木</td>
+<td colspan="2" style="background: #999;">金</td>
+<td colspan="2" style="background: #999;">土</td>
+</tr>${calendarRow}</tbody></table>`;
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
