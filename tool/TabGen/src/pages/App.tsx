@@ -227,7 +227,7 @@ export default function App() {
         
         // 入力欄のクリアとアラートを記述
         setInputValue("");
-        alert(`カレンダーの生成／コピーが完了しました。`);
+        alert(`カレンダーの生成／コピーが完了しました。／貼り付け（Ctrl+V）をしてください。`);
         } catch (err) {
             console.error("コピーに失敗しました:", err);
             alert("クリップボードへのコピーに失敗しました。");
