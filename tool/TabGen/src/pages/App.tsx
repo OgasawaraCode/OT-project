@@ -215,8 +215,10 @@ export default function App() {
         // クリップボードにデータを保存
         try {
             const htmlblob = new Blob([calendarHtmlContent], {type: 'text/html'});
+            const plainblob = new Blob([calendarHtmlContent], {type: 'text/plain'});
             const clipboardItem = new ClipboardItem({
-               'text/html': htmlblob
+               'text/html': htmlblob,
+               'text/plain': plainblob,
         });
         
         await navigator.clipboard.write([clipboardItem]);   
