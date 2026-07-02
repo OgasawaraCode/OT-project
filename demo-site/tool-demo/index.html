@@ -8,6 +8,19 @@
 </head>
 <body>
 
+<div class="tool-fixed-container">
+    <button class="tool-toggle-btn" style="display: block; background-color: #efefef; padding: 8px 12px; border-radius: 4px; cursor: pointer; margin-bottom: 5px; border: none; box-shadow: 0 2px 6px rgba(0,0,0,0.2);">📅</button>
+    <div class="tool-input-container" style="background-color: #ffffff; width: 200px; padding: 10px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); display: none;">
+        <input class="tool-input-month" type="month" style="display: block; width: 145px; color: #333; padding: 5px; margin-bottom: 10px; border-radius: 4px;">
+        <label style="display: block; color: #333; font-size: 12px;">
+            空日／休日を記入↓
+            <input class="tool-input-field" type="text" style="display: block; width: 170px; height: 25px; margin-top: 5px; margin-bottom: 10px;">
+        </label>
+        <p style="font-size: 10px; color: #666; margin-top: 0; margin-bottom: 10px; line-height: 1.2;">※入力例：1,2-4,5am,6pm,7~15休<br>※5-7pmなどの範囲指定も可</p>
+        <button class="tool-generate-btn" style="width: 150px; height: 30px; background-color: #c82333; color: #ffffff; font-size: 12px; border: none; border-radius: 4px; padding: 6px 10px;">カレンダー反映ボタン</button>
+    </div>
+</div>
+
 <div class="aem-component" id="calendarComponent" onclick="selectComponent(event)">
     <div class="aem-toolbar">
         <button class="wrench-btn" onclick="openModal(event)">🛠 編集設定</button>
@@ -24,6 +37,7 @@
                     <td colspan="2">木</td>
                     <td colspan="2">金</td>
                     <td colspan="2">土</td>
+
                 </tr>
                 <tr>
                     <td colspan="2"></td>
@@ -33,6 +47,7 @@
                     <td colspan="2"></td>
                     <td colspan="2"></td>
                     <td colspan="2">1</td>
+
                 </tr>
                 <tr>
                     <td></td>
@@ -243,8 +258,8 @@
                 <tr>
                     <td>午前</td>
                     <td>午後</td>
-                    <td>午前</td>
-                    <td>午後</td>
+                    <td></td>
+                    <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
