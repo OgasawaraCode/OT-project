@@ -17,10 +17,10 @@ function toggleFullscreen() {
     isFullscreen = !isFullscreen;
     if (isFullscreen) { 
         modal.classList.add('is-fullscreen'); 
-        btn.innerText = '内側に縮小'; 
+        btn.innerText = '縮小'; 
     } else { 
         modal.classList.remove('is-fullscreen'); 
-        btn.innerText = '⬜ 大画面に拡大'; 
+        btn.innerText = '拡大'; 
     }
 }
 
