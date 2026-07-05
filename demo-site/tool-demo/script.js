@@ -289,7 +289,7 @@ generateBtn.addEventListener("click", async () => {
         await navigator.clipboard.write([clipboardItem]);
 
         inputField.value = "";
-        alert(`${year}年${month}月のカレンダーをクリップボードにコピーしました。\nAEMのHTML編集画面などに貼り付け（Ctrl+V）をしてください。`);
+        alert(`カレンダーの生成／コピーが完了しました。／貼り付け（Ctrl+V）をしてください。`);
     } catch (err) {
         console.error("コピーに失敗しました:", err);
         alert("クリップボードへのコピーに失敗しました。ブラウザのコピー権限などを確認してください。");
