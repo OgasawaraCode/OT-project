@@ -141,19 +141,17 @@ function keepDigitsAndBuildCalendar(inputData) {
     const inputParts = inputData.split(/[，,、\s]+/);
 
     inputParts.forEach((iPart) => {
-        let normalized = iPart
-            .toLowerCase()
-            .replace(/[０-９]/g, s => String.fromCharCode(s.charCodeAt(0) - 0xFEE0))
-            .replace(/[ａ-ｚ]/g, s => String.fromCharCode(s.charCodeAt(0) - 0xFEE0))
-            .replace(/－/g, "-");
+        let normaltext = iPart.toLowerCase();
 
-        const targetHl = /休$/i.test(normalized);
-        const targetAm = /am$/i.test(normalized);
-        const targetPm = /pm$/i.test(normalized);
+        normaltext = normaltext.replace(/[０-９ａ-ｚ]/g, s => {
+            return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
+        }).replace(/－/g, "-");
 
-        let cleanPart = normalized
-            .replace(/[apm]/g, "")
-            .replace(/[休]/g, "");
+        const targetHl = /休$/i.test(normaltext);
+        const targetAm = /am/i.test(normaltext);
+        const targetPm = /pm/i.test(normaltext);
+
+        let cleanPart = normaltext.replace(/[^0-9\-~ー～]/g, "");
 
         const daysStatus = (day) => {
             if (day >= 1 && day <= 31) {
