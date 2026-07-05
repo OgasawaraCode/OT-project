@@ -25,17 +25,17 @@ let calendarResults: CalendarInitialData[] = Array.from({ length: 31 }, function
 const inputParts: string[] = inputData.split(/[，,、\s]+/);
 
 inputParts.forEach((iPart: string) => {
-    // 休、午前、午後の検索結果を変数に格納
+    // 休、午前、午後、全角のAM、PMの検索結果を変数に格納
     const targetHl = /休$/i.test(iPart);
-    const targetAm = /am$/i.test(iPart);
-    const targetPm = /pm$/i.test(iPart);
+    const targetAm = /[amａｍ]$/i.test(iPart);
+    const targetPm = /[pmｐｍ]$/i.test(iPart);
 
-    // 文字列から不要な要素を削除（am、pm、休）、全角数字も半角に変更
-    let strDelete = iPart.replace(/[apmAPM]/g, "");
+    // 全角・大文字のapmAPMａ-ｚＡ-Ｚをまとめて消去する
+    let strDelete = iPart.replace(/[apmAPMａ-ｚＡ-Ｚ]/g, ""); 
+    
     let converPart = strDelete.replace(/[０-９]/g, function(s) {
         return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
     });
-    // 文字列から「休」も削除
     let cleanPart = converPart.replace(/[休]/g, "");
 
     // 下のforとifで貰った数値を引数dayに渡して番号管理 + 午前午後に分けて値を「休」か「空」に変更
@@ -56,10 +56,11 @@ inputParts.forEach((iPart: string) => {
         }
     };
 
-    //  綺麗にした配列（cleanPart）にハイフン類（-~ー～）が含まれているか確認
-    if (cleanPart.includes("-") || cleanPart.includes("~") || cleanPart.includes("ー") || cleanPart.includes("～")) {
+    //  綺麗にした配列（cleanPart）にハイフン類（-~ー～－）が含まれているか確認
+    if (cleanPart.includes("-") || cleanPart.includes("~") || cleanPart.includes("ー") || cleanPart.includes("～") || cleanPart.includes("－")) {
+        
         // ハイフンで区切った文字列を配列に再格納、配列の1番目と2番目の数値を取得し変数に格納
-        const hyphenDel = cleanPart.split(/[-~ー～]/);
+        const hyphenDel = cleanPart.split(/[-~ー～－]/);
         const start = Number(hyphenDel[0]);
         const end = Number(hyphenDel[1]);
 
