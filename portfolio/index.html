@@ -50,86 +50,159 @@
 </section>
 
 <section id="skills">
-    <div class="container">
-        <h2 class="section-title">SKILLS</h2>
-        <div class="skill-container"> 
-        <div class="skill-block">
-            <h3>Frontend</h3>
-            <div class="skill-tags">
-                <span class="skill-badge">HTML / CSS</span>
-                <span class="skill-badge">JavaScript</span>
-                <span class="skill-badge">TypeScript</span>
-                <span class="skill-badge">React</span>
-            </div>
+  <div class="container">
+    <h2 class="section-title">SKILLS</h2>
+    <div class="skill-container"> 
+      <div class="skill-block">
+        <h3>Frontend</h3>
+        <div class="skill-tags">
+          <span class="skill-badge">HTML / CSS</span>
+          <span class="skill-badge">JavaScript</span>
+          <span class="skill-badge">TypeScript</span>
+          <span class="skill-badge">React</span>
         </div>
-        <div class="skill-block">
-            <h3>Others</h3>
-            <div class="skill-tags">
-                <span class="skill-badge">Git / GitHub</span>
-                <span class="skill-badge">CMS（AEM）</span>
-            </div>
+      </div>
+      <div class="skill-block">
+        <h3>Others</h3>
+        <div class="skill-tags">
+          <span class="skill-badge">Git / GitHub</span>
+          <span class="skill-badge">CMS（AEM）</span>
         </div>
-        </div>
+      </div>
     </div>
+  </div>
 </section>
 
 <section id="work">
-<div class="container">
-  <h2 class="section-title">WORK</h2>
-  <h3 class="work-h3">TabGen（AEMカレンダーサイト更新補助ツール）</h3>
+  <div class="container">
+    <h2 class="section-title">WORK</h2>
+    
+    <div class="work-card-grid">
+      
+      <div class="work-card" onclick="openModal('modal-1')">
+        <div class="work-card-img">
+          <img src="./images/tabgen.png" alt="TabGen">
+        </div>
+        <div class="work-card-info">
+          <h3 class="work-card-title">TabGen</h3>
+          <p class="work-card-desc">AEMカレンダーサイト更新補助ツール</p>
+          <div class="skill-tags">
+            <span class="skill-badge">React</span>
+            <span class="skill-badge">TypeScript</span>
+          </div>
+        </div>
+      </div>
 
-  <div class="work-img" onclick="openModal()">
-      <img src="./images/tabgen.png" alt="tabgen">
-  <p class="sp-ex-text">※本ツールはPC環境での利用を想定して開発しております。</p>
-  </div>
-  
-  <div id="videoModal" class="modal-background" onclick="closeModal(event)">
-    <div class="modal-content">
-      <button class="modal-close-btn" onclick="closeModal(event)">×</button>
-      <video id="tabgen-Video" src="./video/tabgen.mp4" playsinline loop muted onclick="toggleVideo(event)"></video>
-      <div id="modalButton" class="play-button" onclick="toggleVideo(event)"></div>
+      <div class="work-card" onclick="openModal('modal-2')">
+        <div class="work-card-img">
+          <img src="./" alt="制作物2">
+        </div>
+        <div class="work-card-info">
+          <h3 class="work-card-title">制作物2</h3>
+          <p class="work-card-desc">テキスト</p>
+          <div class="skill-tags">
+            <span class="skill-badge">HTML / CSS</span>
+            <span class="skill-badge">JavaScript</span>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
+</section>
 
-  <div class="work-grid-content">
-    <div>
-      <div class="work-block">
-        <h3>1. 開発の背景と解決したかった課題</h3>
-        <p>所属チームでは、Adobe Experience Manager（AEM）の仕様上、毎月のカレンダー更新を手作業で行っており、更新に時間がかかる事や、日付・予定の転記ミスが発生する事が課題でした。そこで、入力データからカレンダーを自動生成し、AEMへそのまま貼り付けられる業務改善ツールを自作。結果として作業時間を75%短縮し、ヒューマンエラーを大幅に削減しました。さらに、本ツールのマニュアルを整備してチームへ展開した事で、部署全体の業務効率化に貢献しました。</p>
+<div id="modal-1" class="modal-background" onclick="closeModal(event, 'modal-1')">
+  <div class="modal-content modal-content-large">
+    <button class="modal-close-btn" onclick="closeModal(event, 'modal-1')">×</button>
+    
+    <h3 class="work-h3">TabGen（AEMカレンダーサイト更新補助ツール）</h3>
+
+    <div class="modal-video-area">
+      <video id="video-modal-1" src="./video/tabgen.mp4" playsinline loop muted onclick="toggleVideo(event, 'modal-1')"></video>
+      <div class="play-button" onclick="toggleVideo(event, 'modal-1')"></div>
+      <p class="sp-ex-text">※本ツールはPC環境での利用を想定して開発しております。</p>
+    </div>
+    
+    <div class="work-grid-content">
+      <div>
+        <div class="work-block">
+          <h3>1. 開発の背景と解決したかった課題</h3>
+          <p>所属チームでは、Adobe Experience Manager（AEM）の仕様上、毎月のカレンダー更新を手作業で行っており、更新に時間がかかる事や、日付・予定の転記ミスが発生する事が課題でした。そこで、入力データからカレンダーを自動生成し、AEMへそのまま貼り付けられる業務改善ツールを自作。結果として作業時間を75%短縮し、ヒューマンエラーを大幅に削減しました。さらに、本ツールのマニュアルを整備してチームへ展開した事で、部署全体の業務効率化に貢献しました。</p>
+        </div>
+
+        <div class="work-block">
+          <h3>2. 技術スタックの採用理由</h3>
+          <p>当初はVanilla JavaScriptで開発していましたが、機能追加に伴いコードの肥大化やDOM操作の複雑化が課題となりました。その為、UIのコンポーネント化やState管理が行えるReactを採用し、さらにTypeScriptを導入する事で型安全性を高め、保守性と開発効率を向上させました。</p>
+        </div>
+
+        <div class="work-block">
+          <h3>3. 入力しやすさを考慮したUI設計</h3>
+          <p>利用者が入力形式を意識せず使える様に、全角・半角や大文字・小文字、複数種類のハイフン等の表記揺れを判別・統一する入力処理を実装しました。</p>
+        </div>
       </div>
 
-      <div class="work-block">
-        <h3>2. 技術スタックの採用理由</h3>
-        <p>当初はVanilla JavaScriptで開発していましたが、機能追加に伴いコードの肥大化やDOM操作の複雑化が課題となりました。その為、UIのコンポーネント化やState管理が行えるReactを採用し、さらにTypeScriptを導入する事で型安全性を高め、保守性と開発効率を向上させました。</p>
-      </div>
-
-      <div class="work-block">
-        <h3>3. 入力しやすさを考慮したUI設計</h3>
-        <p>利用者が入力形式を意識せず使える様に、全角・半角や大文字・小文字、複数種類のハイフン等の表記揺れを判別・統一する入力処理を実装しました。</p>
+      <div class="work-side-content">
+        <div class="work-block">
+          <h3>担当範囲</h3>
+          <ul class="range-list">
+            <li>担当範囲<span>企画・設計・実装</span></li>
+            <li>開発期間<span>約2ヶ月</span></li>
+            <li>公開環境<span>Vercel</span></li>
+          </ul>
+        </div>
       </div>
     </div>
 
-    <div class="work-side-content">
-      <div class="work-block">
-        <h3>担当範囲</h3>
-        <ul class="range-list">
-          <li>担当範囲<span>企画・設計・実装</span></li>
-          <li>開発期間<span>約2ヶ月</span></li>
-          <li>公開環境<span>Vercel</span></li>
-        </ul>
+    <div class="work-more-content">
+      <h4 class="work-more-h4">実際の動作とソースコードはこちら</h4>
+      <p class="work-more-p">本ツールの挙動、及び裏側のソースコード（GitHub）を公開しています。<br><span class="work-more-p-sm">本来はTampermonkeyでの導入が必要ですが、より手軽に触っていただける様に、Webサイト単体で動作する体験版をご用意しました。</span></p>
+      <div class="btn-content" style="justify-content: center; margin-top: 0;">
+        <a href="https://ot-project-five.vercel.app/" target="_blank" class="btn btn-b-color">本番ページを見る</a>
+        <a href="https://github.com/OGALAB/OT-project" target="_blank" class="btn btn-w-color">GitHubを見る</a>
       </div>
     </div>
+
   </div>
-  <div class="work-more-content">
-    <h4 class="work-more-h4">実際の動作とソースコードはこちら</h4>
-    <p class="work-more-p">本ツールの挙動、及び裏側のソースコード（GitHub）を公開しています。<br><span class="work-more-p-sm">本来はTampermonkeyでの導入が必要ですが、より手軽に触っていただける様に、Webサイト単体で動作する体験版をご用意しました。</span></p>
-    <div class="btn-content" style="justify-content: center; margin-top: 0;">
-      <a href="https://ot-project-five.vercel.app/" target="_blank" class="btn btn-b-color">本番ページを見る</a>
-      <a href="https://github.com/OGALAB/OT-project" target="_blank" class="btn btn-w-color">GitHubを見る</a>
+</div>
+
+<div id="modal-2" class="modal-background" onclick="closeModal(event, 'modal-2')">
+  <div class="modal-content modal-content-large">
+    <button class="modal-close-btn" onclick="closeModal(event, 'modal-2')">×</button>
+    
+    <h3 class="work-h3">制作物2</h3>
+
+    <div class="modal-video-area">
+      <video id="video-modal-2" src="./" playsinline loop muted onclick="toggleVideo(event, 'modal-2')"></video>
+      <div class="play-button" onclick="toggleVideo(event, 'modal-2')"></div>
+    </div>
+    
+    <div class="work-grid-content">
+      <div>
+        <div class="work-block">
+          <h3>1. 概要</h3>
+          <p>テキスト2</p>
+        </div>
+      </div>
+
+      <div class="work-side-content">
+        <div class="work-block">
+          <h3>担当範囲</h3>
+          <ul class="range-list">
+            <li>担当範囲<span>企画・実装</span></li>
+            <li>開発期間<span>1ヶ月</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="work-more-content">
+      <div class="btn-content" style="justify-content: center; margin-top: 0;">
+        <a href="#" target="_blank" class="btn btn-b-color">本番ページを見る</a>
+        <a href="#" target="_blank" class="btn btn-w-color">GitHubを見る</a>
+      </div>
     </div>
   </div>
 </div>
-</section>
 
 <!-- footer -->
 <footer>
