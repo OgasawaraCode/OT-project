@@ -9,7 +9,7 @@ window.addEventListener("scroll", function() {
 });
 
 let mouseTimeout;
-const HIDE_DELAY = 2000;
+const hideDelay = 1000;
 
 function hideControls() {
     const modal = document.getElementById("videoModal");
@@ -25,7 +25,7 @@ function resetControlTimer() {
     modal.classList.remove("hide-controls");
 
     clearTimeout(mouseTimeout);
-    mouseTimeout = setTimeout(hideControls, HIDE_DELAY);
+    mouseTimeout = setTimeout(hideControls, hideDelay);
 }
 
 function openModal() {
