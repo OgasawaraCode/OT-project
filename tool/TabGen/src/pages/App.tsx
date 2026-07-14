@@ -3,7 +3,7 @@ import { useState } from "react";
 import MonthInput from "./MonthInput";
 import TextInput from "./TextInput";
 import GenerateBtn from "./GenerateBtn";
-import { keepDigitsAndBuildCalendar, generateCalendarHtml } from "./utils/CalendarParts";
+import { buildCalendarData, generateCalendarHtml } from "./utils/CalendarParts";
 
 export default function App() {
     // トグルボタン開閉
@@ -42,7 +42,7 @@ export default function App() {
         const year = Number(inputYear);
         const month = Number(inputMonth);
 
-        const cleaneCalendarData = keepDigitsAndBuildCalendar(cleanInputValue);
+        const cleaneCalendarData = buildCalendarData(cleanInputValue);
         const calendarHtmlContent = generateCalendarHtml(year, month, cleaneCalendarData);
 
         try {
