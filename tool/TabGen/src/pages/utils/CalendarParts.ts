@@ -5,7 +5,7 @@ interface CalendarInitialData {
 }
 
 //【データ管理関数】
-export function keepDigitsAndBuildCalendar(inputData: string): CalendarInitialData[] {
+export function buildCalendarData(inputData: string): CalendarInitialData[] {
     
 let calendarResults: CalendarInitialData[] = Array.from({ length: 31 }, function(): CalendarInitialData {
     return {
@@ -21,9 +21,9 @@ inputParts.forEach((iPart: string) => {
     const targetAm = /[amａｍ]$/i.test(iPart);
     const targetPm = /[pmｐｍ]$/i.test(iPart);
 
-    let strDelete = iPart.replace(/[apmAPMａ-ｚＡ-Ｚ]/g, ""); 
+    let stringDel = iPart.replace(/[apmAPMａ-ｚＡ-Ｚ]/g, "");
     
-    let converPart = strDelete.replace(/[０-９]/g, function(s) {
+    let converPart = stringDel.replace(/[０-９]/g, function(s) {
         return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
     });
     let cleanPart = converPart.replace(/[休]/g, "");
@@ -110,7 +110,7 @@ export function generateCalendarHtml(year: number, month: number, calendarData: 
 
         row += "</tr>";
         calendarRow += row;
-        
+
         if (k % 3 === 2) {
             dateCount = retenCount;
         }
